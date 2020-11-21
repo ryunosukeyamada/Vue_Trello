@@ -28,11 +28,14 @@ const store = new Vuex.Store({
   },
   mutations: {
     addlist(state, payload) {
-      state.lists.push({ title: payload.title, cards: [] });
+      state.lists.push({ title: payload, cards: [] });
     },
     removelist(state, payload) {
       state.lists.splice(payload.listIndex, 1);
-    }
+    },
+    addcard(state, payload) {
+      state.lists[payload.listIndex].cards = { body: payload.body };
+    },
   },
   actions: {
     addlist(context, payload) {
@@ -40,12 +43,15 @@ const store = new Vuex.Store({
     },
     removelist(context, payload) {
       context.commit("removelist", payload);
-    }
+    },
+    addcard(context, payload) {
+      context.commit("addcard", payload);
+    },
   },
-  getters: {}
+  getters: {},
 });
 
-// subscribeはすべてのmutationsの後
+// subscribeはmutationsの後実行
 store.subscribe((mutation, state) => {
   console.log(state.lists);
   localStorage.setItem("trello-lists", JSON.stringify(state.lists));

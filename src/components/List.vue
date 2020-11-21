@@ -3,12 +3,20 @@
     <div class="listheader">
       <p class="list-title">{{ title }}</p>
       <div class="deletelist" @click="removeList">✖</div>
+      <div>
+        <CardAdd :listIndex="listIndex"></CardAdd>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import CardAdd from "./CardAdd.vue";
+
 export default {
+  components: {
+    CardAdd
+  },
   props: {
     title: {
       type: String,
