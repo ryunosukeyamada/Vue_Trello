@@ -1,15 +1,17 @@
 <template>
   <div>
-    <form class="addlist" @submit.prevent="addList">
+    <form :class="classList" @submit.prevent="addList">
       <input
         v-model="title"
         type="text"
         class="text-input"
         placeholder="Add new list"
-        @focusin="startEditing"
-        @focusout="finishEdeting"
+        @mouseenter="startEditing"
+        @mouseleave="finishEdeting"
       />
-      <button tyoe="submit" class="add-button">Add</button>
+      <button tyoe="submit" class="add-button" v-if="isEditing || titleExists">
+        Add
+      </button>
     </form>
   </div>
 </template>
@@ -19,9 +21,26 @@ export default {
   data() {
     return {
       title: "",
-      isEditing: false
+      isEditing: false,
     };
   },
+  computed: {
+    classList() {
+      const classList = ["addlist"];
+      if (this.isEditing) {
+        classList.push("active");
+      }
+
+      if (this.titleExists) {
+        classList.push("addable");
+      }
+      return classList;
+    },
+    titleExists() {
+      return this.title.length > 0;
+    }
+  },
+
   methods: {
     addList() {
       this.$store.dispatch("addlist", { title: this.title });
@@ -32,7 +51,7 @@ export default {
     },
     finishEdeting() {
       this.isEditing = false;
-    }
-  }
+    },
+  },
 };
 </script>
