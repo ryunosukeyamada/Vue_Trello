@@ -34,7 +34,11 @@ const store = new Vuex.Store({
       state.lists.splice(payload.listIndex, 1);
     },
     addcard(state, payload) {
-      state.lists[payload.listIndex].cards = { body: payload.body };
+      // console.log(payload);
+      state.lists[payload.listIndex].cards.push({ body: payload.body });
+    },
+    removecard(state, payload) {
+      state.lists[payload.listIndex].cards.splice(payload.cardIndex, 1);
     },
   },
   actions: {
@@ -47,8 +51,19 @@ const store = new Vuex.Store({
     addcard(context, payload) {
       context.commit("addcard", payload);
     },
+    removecard(context, payload) {
+      context.commit("removecard", payload);
+    },
   },
-  getters: {},
+  getters: {
+    totalCardCount(state) {
+      let count = 0;
+      state.lists.map(function(item) {
+        count += item.cards.length;
+      });
+      return count;
+    },
+  },
 });
 
 // subscribeはmutationsの後実行

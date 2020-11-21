@@ -7,9 +7,9 @@
         class="text-input"
         placeholder="Add new list"
         @mouseenter="startEditing"
-        @mouseleave="finishEdeting"
+        @mouseleave="finishEditing"
       />
-      <button tyoe="submit" class="add-button" v-if="isEditing || titleExists">
+      <button tyoe="submit" class="add-button" v-if="titleExists">
         Add
       </button>
     </form>
@@ -49,7 +49,7 @@ export default {
     startEditing() {
       this.isEditing = true;
     },
-    finishEdeting() {
+    finishEditing() {
       this.isEditing = false;
     }
   }

@@ -1,5 +1,5 @@
 html {
-  background: rgb(171, 242, 255);
+  background: orange;
   font-family: 'Avenir', Helvetica, Arial, 'system-ui', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -10,7 +10,7 @@ html {
 }
 
 header {
-  background: rgb(158, 248, 244);
+  background: orange;
   height: 70px;
   color: white;
   font-style: italic;
@@ -35,7 +35,7 @@ main {
 }
 
 .addlist {
-  margin: 15px 10px auto;
+  margin: 10px 10px auto;
   display: inline-block;
   flex-direction: column;
   align-items: flex-start;
@@ -58,11 +58,6 @@ main {
   overflow: overlay;
 }
 
-.addcard .text-input {
-  width: 180px;
-  height: 20px;
-}
-
 .text-input:focus {
   outline: 0;
   cursor: initial;
@@ -70,13 +65,13 @@ main {
 
 .add-button {
   margin-top: 15px;
-  padding: 10px 18px;
+  padding: 10px 10px;
   background-color: #999;
   border: none;
   border-radius: 8px;
   font-family: "Noto Sans Japanese", "Noto Sans", 'system-ui', sans-serif;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 14px;
   color: #fff;
 }
 
@@ -105,7 +100,7 @@ main {
   flex-direction: column;
   align-items: flex-start;
   min-width: 290px;
-  width: 370px;
+  width: 350px;
   background-color: #e0e0e0;
   border-radius: 8px;
   padding: 15px;
@@ -121,7 +116,7 @@ main {
 }
 
 .list-title {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   padding: 15px;
 }
@@ -151,7 +146,7 @@ main {
   padding: 30px 15px 40px;
   background-color: #fff;
   border-radius: 8px;
-  width: 260px;
+  width: 320px;
   cursor: pointer;
 }
 
