@@ -51,7 +51,7 @@ export default {
     },
     finishEdeting() {
       this.isEditing = false;
-    },
-  },
+    }
+  }
 };
 </script>
