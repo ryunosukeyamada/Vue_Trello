@@ -5,7 +5,7 @@
       <span class="list-counter">total: {{ totalCard }}</span>
       <div class="deletelist" @click="removeList">✖</div>
     </div>
-    <CardAdd :listIndex="listIndex"></CardAdd>
+    
     <draggable group="cards" :list="cards" @end="$emit('change')">
       <Card
         v-for="(item, index) in cards"
@@ -14,6 +14,7 @@
         :listIndex="listIndex"
         :cardIndex="index"
       />
+      <CardAdd :listIndex="listIndex"></CardAdd>
     </draggable>
   </div>
 </template>

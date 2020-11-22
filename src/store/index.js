@@ -5,10 +5,10 @@ Vue.use(Vuex);
 // localStorage.removeItem("trello-lists");
 
 const savedLists = localStorage.getItem("trello-lists");
-console.log("Json parse↓");
-console.log(JSON.parse(savedLists));
-console.log("Json.stringify↓");
-console.log(JSON.stringify(savedLists));
+// console.log("Json parse↓");
+// console.log(JSON.parse(savedLists));
+// console.log("Json.stringify↓");
+// console.log(savedLists);
 
 const store = new Vuex.Store({
   state: {
@@ -54,7 +54,7 @@ const store = new Vuex.Store({
   getters: {
     totalCardCount(state) {
       let count = 0;
-      state.lists.map(function(item) {
+      state.lists.map(item => {
         count += item.cards.length;
       });
       return count;

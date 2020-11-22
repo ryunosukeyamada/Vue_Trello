@@ -9,14 +9,7 @@
         @mousemove="startEditing"
         @mouseleave="finishEditing"
       />
-      <button
-        type="submit"
-        class="add-button"
-        v-show="bodyLengs"
-        :disabled="isEditing"
-      >
-        Add
-      </button>
+      <button type="submit" class="add-button" v-show="bodyLengs">Add</button>
     </form>
   </div>
 </template>

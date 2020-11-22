@@ -4,7 +4,7 @@
 
     <main>
       <p class="info-line">All: {{ totalCardCount }} tasks</p>
-      <draggable group="list" :list="lists" @end="movingCard()">
+      <draggable class="list-index" :list="lists" @end="movingList()">
         <list
           v-for="(item, index) in lists"
           :key="item.id"
@@ -41,6 +41,9 @@ export default {
 
   methods: {
     movingCard() {
+      this.$store.dispatch("updateList", this.lists);
+    },
+    movingList() {
       this.$store.dispatch("updateList", this.lists);
     },
   },
