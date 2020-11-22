@@ -5,26 +5,16 @@ Vue.use(Vuex);
 // localStorage.removeItem("trello-lists");
 
 const savedLists = localStorage.getItem("trello-lists");
+console.log("Json parse↓");
 console.log(JSON.parse(savedLists));
+console.log("Json.stringify↓");
+console.log(JSON.stringify(savedLists));
 
 const store = new Vuex.Store({
   state: {
     lists: savedLists
       ? JSON.parse(savedLists)
-      : [
-          {
-            title: "Backlog",
-            cards: [{ body: "English" }, { body: "PK" }],
-          },
-          {
-            title: "Todo",
-            cards: [{ body: "Science" }],
-          },
-          {
-            title: "Doing",
-            cards: [],
-          },
-        ],
+      : [{ title: "リストタイトル", cards: [{ body: "カードタイトル" }] }],
   },
   mutations: {
     addlist(state, payload) {
@@ -40,6 +30,9 @@ const store = new Vuex.Store({
     removecard(state, payload) {
       state.lists[payload.listIndex].cards.splice(payload.cardIndex, 1);
     },
+    updateList(state, payload) {
+      state.lists = payload;
+    },
   },
   actions: {
     addlist(context, payload) {
@@ -53,6 +46,9 @@ const store = new Vuex.Store({
     },
     removecard(context, payload) {
       context.commit("removecard", payload);
+    },
+    updateList(context, payload) {
+      context.commit("updateList", payload);
     },
   },
   getters: {
@@ -68,7 +64,6 @@ const store = new Vuex.Store({
 
 // subscribeはmutationsの後実行
 store.subscribe((mutation, state) => {
-  console.log(state.lists);
   localStorage.setItem("trello-lists", JSON.stringify(state.lists));
 });
 

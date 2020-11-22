@@ -4,13 +4,16 @@
 
     <main>
       <p class="info-line">All: {{ totalCardCount }} tasks</p>
-      <list
-        v-for="(item, index) in lists"
-        :key="item.id"
-        :title="item.title"
-        :listIndex="index"
-        :cards="item.cards"
-      />
+      <draggable group="list" :list="lists" @end="movingCard()">
+        <list
+          v-for="(item, index) in lists"
+          :key="item.id"
+          :title="item.title"
+          :listIndex="index"
+          :cards="item.cards"
+          @change="movingCard"
+        />
+      </draggable>
       <list-add> </list-add>
     </main>
   </div>
@@ -19,18 +22,27 @@
 <script>
 import ListAdd from "./ListAdd.vue";
 import List from "./List.vue";
+
 import { mapState } from "vuex";
+import draggable from "vuedraggable";
 export default {
   components: {
     ListAdd,
     List,
+    draggable,
   },
 
   computed: {
     ...mapState(["lists"]),
     totalCardCount() {
       return this.$store.getters.totalCardCount;
-    }
+    },
+  },
+
+  methods: {
+    movingCard() {
+      this.$store.dispatch("updateList", this.lists);
+    },
   },
 
   // created(){

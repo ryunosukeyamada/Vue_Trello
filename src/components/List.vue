@@ -6,17 +6,21 @@
       <div class="deletelist" @click="removeList">✖</div>
     </div>
     <CardAdd :listIndex="listIndex"></CardAdd>
-    <Card
-      v-for="(item, index) in cards"
-      :key="item.id"
-      :body="item.body"
-      :listIndex="listIndex"
-      :cardIndex="index"
-    />
+    <draggable group="cards" :list="cards" @end="$emit('change')">
+      <Card
+        v-for="(item, index) in cards"
+        :key="item.id"
+        :body="item.body"
+        :listIndex="listIndex"
+        :cardIndex="index"
+      />
+    </draggable>
   </div>
 </template>
 
 <script>
+import draggable from "vuedraggable";
+
 import CardAdd from "./CardAdd.vue";
 import Card from "./Card.vue";
 
@@ -24,11 +28,12 @@ export default {
   components: {
     CardAdd,
     Card,
+    draggable,
   },
   computed: {
-    totalCard(){
+    totalCard() {
       return this.cards.length;
-    }
+    },
   },
   props: {
     title: {

@@ -9,7 +9,7 @@
         @mouseenter="startEditing"
         @mouseleave="finishEditing"
       />
-      <button tyoe="submit" class="add-button" v-if="titleExists">
+      <button tyoe="submit" class="add-button" v-show="titleExists">
         Add
       </button>
     </form>

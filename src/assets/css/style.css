@@ -37,10 +37,8 @@ main {
 .addlist {
   margin: 10px 10px auto;
   display: inline-block;
-  flex-direction: column;
-  align-items: flex-start;
-  min-width: 320px;
-  width: 320px;
+  min-width: 220px;
+  width: 250px;
 }
 
 .text-input {
